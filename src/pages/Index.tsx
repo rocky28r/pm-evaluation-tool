@@ -7,6 +7,7 @@ import { SkillsChart } from "@/components/SkillsChart";
 import { ShareButton } from "@/components/ShareButton";
 import { GapAnalysis } from "@/components/GapAnalysis";
 import { ExportButton } from "@/components/ExportButton";
+import { SaveLoadKey } from "@/components/SaveLoadKey";
 
 const Index = () => {
   const {
@@ -14,6 +15,7 @@ const Index = () => {
     setSelectedRole,
     scores,
     updateScore,
+    loadState,
     getOwnScoresForChart,
     getRoleScoresForChart,
     getRoleExpectation,
@@ -32,7 +34,10 @@ const Index = () => {
             <h1 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
               Product Manager Skills Assessment
             </h1>
-            <ExportButton targetRef={exportRef} selectedRole={selectedRole} />
+            <div className="flex items-center gap-2">
+              <SaveLoadKey selectedRole={selectedRole} scores={scores} onLoadKey={loadState} />
+              <ExportButton targetRef={exportRef} selectedRole={selectedRole} />
+            </div>
           </div>
           <RoleSelector value={selectedRole} onChange={setSelectedRole} />
         </div>

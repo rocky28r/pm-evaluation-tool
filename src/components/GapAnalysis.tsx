@@ -142,8 +142,11 @@ export function GapAnalysis({ ownScores, roleScores, selectedRole }: GapAnalysis
 }
 
 function GapCard({ item, type }: { item: GapItem; type: 'strength' | 'development' }) {
-  const absGap = Math.abs(item.gap);
-  const barWidth = Math.min(absGap / 3 * 100, 100);
+  // For strengths: show how much you exceed the target (gap-based)
+  // For development: show progress toward the target (own/target percentage)
+  const barWidth = type === 'strength' 
+    ? Math.min(Math.abs(item.gap) / 3 * 100, 100)
+    : Math.min((item.own / item.target) * 100, 100);
   
   return (
     <div className={`p-3 rounded-lg border ${categoryStyles[item.category]}`}>
