@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { skillCategories } from "@/lib/pm-skills-data";
 import { useSkillsAssessment } from "@/hooks/useSkillsAssessment";
-import { RoleSelector } from "@/components/RoleSelector";
-import { SkillInput } from "@/components/SkillInput";
+import { RoleSelectorCard } from "@/components/RoleSelectorCard";
+import { SkillCategoryAccordion } from "@/components/SkillCategoryAccordion";
 import { SkillsChart } from "@/components/SkillsChart";
 import { GapAnalysis } from "@/components/GapAnalysis";
 import { ExportButton } from "@/components/ExportButton";
 import { SaveLoadKey } from "@/components/SaveLoadKey";
+import { AssessmentProgress } from "@/components/AssessmentProgress";
 
 const Index = () => {
   const {
@@ -22,152 +23,116 @@ const Index = () => {
   } = useSkillsAssessment();
 
   const exportRef = useRef<HTMLDivElement>(null);
-  let skillNumber = 0;
+
+  const categoryGroups = [
+    {
+      title: "Customer Insight",
+      colorClass: "bg-pm-yellow",
+      indices: [1, 2, 3],
+      startNumber: 1,
+    },
+    {
+      title: "Product Strategy",
+      colorClass: "bg-pm-cyan",
+      indices: [5, 6, 7],
+      startNumber: 4,
+    },
+    {
+      title: "Influencing People",
+      colorClass: "bg-pm-blue",
+      indices: [9, 10, 11],
+      startNumber: 7,
+    },
+    {
+      title: "Product Execution",
+      colorClass: "bg-pm-orange",
+      indices: [13, 14, 15],
+      startNumber: 10,
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-card border-b sticky top-0 z-40">
-        <div className="container py-4 md:py-6">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl md:text-3xl font-heading font-bold text-foreground">
-              Product Manager Skills Assessment
-            </h1>
+        <div className="container py-4 md:py-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-xl md:text-2xl font-heading font-bold text-foreground">
+                PM Skills Assessment
+              </h1>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Rate your skills and compare against role benchmarks
+              </p>
+            </div>
             <div className="flex items-center gap-2">
-              <SaveLoadKey selectedRole={selectedRole} scores={scores} onLoadKey={loadState} />
+              <SaveLoadKey
+                selectedRole={selectedRole}
+                scores={scores}
+                onLoadKey={loadState}
+              />
               <ExportButton targetRef={exportRef} selectedRole={selectedRole} />
             </div>
           </div>
-          <RoleSelector value={selectedRole} onChange={setSelectedRole} />
         </div>
       </header>
 
       <main className="container py-6 md:py-8">
-        {/* Export Target Container */}
-        <div ref={exportRef} className="bg-background">
-          {/* Chart Section */}
-          <section className="mb-8 md:mb-12">
-            <SkillsChart
-              ownScores={getOwnScoresForChart()}
-              roleScores={getRoleScoresForChart()}
-              selectedRole={selectedRole}
-            />
-          </section>
+        <div className="grid lg:grid-cols-[1fr,1.4fr] gap-6 lg:gap-8">
+          {/* Left Column - Inputs */}
+          <div className="space-y-5 order-2 lg:order-1">
+            {/* Role Selector Card */}
+            <RoleSelectorCard value={selectedRole} onChange={setSelectedRole} />
 
-          {/* Gap Analysis Section */}
-          <section className="mb-8 md:mb-12">
-            <GapAnalysis
-              ownScores={getOwnScoresForChart()}
-              roleScores={getRoleScoresForChart()}
-              selectedRole={selectedRole}
-            />
-          </section>
+            {/* Progress */}
+            <div className="px-1">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-foreground">
+                  Assessment Progress
+                </span>
+              </div>
+              <AssessmentProgress scores={scores} skillIndices={skillIndices} />
+            </div>
+
+            {/* Skill Categories */}
+            <div className="space-y-3">
+              {categoryGroups.map((group) => (
+                <SkillCategoryAccordion
+                  key={group.title}
+                  title={group.title}
+                  colorClass={group.colorClass}
+                  skillIndices={group.indices}
+                  skillCategories={skillCategories}
+                  scores={scores}
+                  getRoleExpectation={getRoleExpectation}
+                  updateScore={updateScore}
+                  startNumber={group.startNumber}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column - Visualizations */}
+          <div className="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start space-y-6">
+            <div ref={exportRef} className="bg-background space-y-6">
+              {/* Chart Section */}
+              <div className="rounded-lg border border-border bg-card p-4 md:p-6">
+                <SkillsChart
+                  ownScores={getOwnScoresForChart()}
+                  roleScores={getRoleScoresForChart()}
+                  selectedRole={selectedRole}
+                />
+              </div>
+
+              {/* Gap Analysis Section */}
+              <GapAnalysis
+                ownScores={getOwnScoresForChart()}
+                roleScores={getRoleScoresForChart()}
+                selectedRole={selectedRole}
+              />
+            </div>
+          </div>
         </div>
-
-        {/* Assessment Inputs */}
-        <section className="max-w-3xl mx-auto">
-          {/* Header Row */}
-          <div className="grid grid-cols-[1fr,80px,80px] md:grid-cols-[1fr,100px,100px] gap-2 md:gap-4 items-center py-3 px-3 md:px-4 mb-2 bg-muted rounded-lg font-medium text-sm text-muted-foreground">
-            <div>Category</div>
-            <div className="text-center">Your Score</div>
-            <div className="text-center">Role Target</div>
-          </div>
-
-          {/* Category Groups */}
-          <div className="space-y-6">
-            {/* Customer Insight */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-pm-yellow uppercase tracking-wide px-1">
-                Customer Insight
-              </h3>
-              <div className="space-y-2">
-                {[1, 2, 3].map((index) => {
-                  skillNumber++;
-                  return (
-                    <SkillInput
-                      key={index}
-                      skillName={skillCategories[index]}
-                      skillNumber={skillNumber}
-                      index={index}
-                      value={scores[index] || ""}
-                      roleValue={getRoleExpectation(index)}
-                      onChange={(value) => updateScore(index, value)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Product Strategy */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-pm-cyan uppercase tracking-wide px-1">
-                Product Strategy
-              </h3>
-              <div className="space-y-2">
-                {[5, 6, 7].map((index) => {
-                  skillNumber++;
-                  return (
-                    <SkillInput
-                      key={index}
-                      skillName={skillCategories[index]}
-                      skillNumber={skillNumber}
-                      index={index}
-                      value={scores[index] || ""}
-                      roleValue={getRoleExpectation(index)}
-                      onChange={(value) => updateScore(index, value)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Influencing People */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-pm-blue uppercase tracking-wide px-1">
-                Influencing People
-              </h3>
-              <div className="space-y-2">
-                {[9, 10, 11].map((index) => {
-                  skillNumber++;
-                  return (
-                    <SkillInput
-                      key={index}
-                      skillName={skillCategories[index]}
-                      skillNumber={skillNumber}
-                      index={index}
-                      value={scores[index] || ""}
-                      roleValue={getRoleExpectation(index)}
-                      onChange={(value) => updateScore(index, value)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Product Execution */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-semibold text-pm-orange uppercase tracking-wide px-1">
-                Product Execution
-              </h3>
-              <div className="space-y-2">
-                {[13, 14, 15].map((index) => {
-                  skillNumber++;
-                  return (
-                    <SkillInput
-                      key={index}
-                      skillName={skillCategories[index]}
-                      skillNumber={skillNumber}
-                      index={index}
-                      value={scores[index] || ""}
-                      roleValue={getRoleExpectation(index)}
-                      onChange={(value) => updateScore(index, value)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
