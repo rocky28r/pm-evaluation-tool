@@ -103,7 +103,7 @@ export function SkillsChart({
               size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 11,
               weight: 500,
             },
-            color: pointLabelColors as unknown as string[],
+            color: (ctx: { index: number }) => pointLabelColors[ctx.index] || "#666",
           },
         },
       },

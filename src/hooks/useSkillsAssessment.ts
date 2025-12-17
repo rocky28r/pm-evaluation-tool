@@ -71,6 +71,11 @@ export function useSkillsAssessment() {
     }));
   }, []);
 
+  const loadState = useCallback((role: string, newScores: Record<number, string>) => {
+    setSelectedRole(role);
+    setScores(newScores);
+  }, []);
+
   const getOwnScoresForChart = useCallback((): (number | null)[] => {
     return skillCategories.map((skillName, index) => {
       if (skillName === "") return null;
@@ -100,6 +105,7 @@ export function useSkillsAssessment() {
     setSelectedRole,
     scores,
     updateScore,
+    loadState,
     getOwnScoresForChart,
     getRoleScoresForChart,
     getRoleExpectation,
