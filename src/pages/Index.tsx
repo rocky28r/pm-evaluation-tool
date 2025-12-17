@@ -4,7 +4,6 @@ import { useSkillsAssessment } from "@/hooks/useSkillsAssessment";
 import { RoleSelector } from "@/components/RoleSelector";
 import { SkillInput } from "@/components/SkillInput";
 import { SkillsChart } from "@/components/SkillsChart";
-import { ShareButton } from "@/components/ShareButton";
 import { GapAnalysis } from "@/components/GapAnalysis";
 import { ExportButton } from "@/components/ExportButton";
 import { SaveLoadKey } from "@/components/SaveLoadKey";
@@ -170,8 +169,6 @@ const Index = () => {
           </div>
         </section>
       </main>
-
-      <ShareButton selectedRole={selectedRole} scores={scores} />
     </div>
   );
 };
