@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Key, Copy, Upload, Check } from "lucide-react";
+import { Key, Copy, Upload, Check, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -58,20 +58,33 @@ function decodeState(key: string): { role: string; scores: Record<number, string
 }
 
 export function SaveLoadKey({ selectedRole, scores, onLoadKey }: SaveLoadKeyProps) {
-  const [copied, setCopied] = useState(false);
+  const [copiedKey, setCopiedKey] = useState(false);
+  const [copiedUrl, setCopiedUrl] = useState(false);
   const [loadKeyInput, setLoadKeyInput] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const currentKey = encodeState(selectedRole, scores);
+  const shareUrl = `${window.location.origin}${window.location.pathname}?state=${currentKey}`;
 
   const handleCopyKey = async () => {
     try {
       await navigator.clipboard.writeText(currentKey);
-      setCopied(true);
+      setCopiedKey(true);
       toast.success("Save key copied to clipboard!");
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopiedKey(false), 2000);
     } catch {
       toast.error("Failed to copy key. Please try again.");
+    }
+  };
+
+  const handleCopyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopiedUrl(true);
+      toast.success("Share link copied to clipboard!");
+      setTimeout(() => setCopiedUrl(false), 2000);
+    } catch {
+      toast.error("Failed to copy link. Please try again.");
     }
   };
 
@@ -99,12 +112,33 @@ export function SaveLoadKey({ selectedRole, scores, onLoadKey }: SaveLoadKeyProp
         <DialogHeader>
           <DialogTitle>Save & Load Assessment</DialogTitle>
           <DialogDescription>
-            Copy your save key to store locally, or paste a key to restore a previous assessment.
+            Share your assessment via link, copy the save key, or restore from a previous key.
           </DialogDescription>
         </DialogHeader>
         
         <div className="space-y-4 pt-4">
-          {/* Save Section */}
+          {/* Share URL Section */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium flex items-center gap-2">
+              <Link className="w-4 h-4" />
+              Share Link
+            </label>
+            <div className="flex gap-2">
+              <Input
+                readOnly
+                value={shareUrl}
+                className="font-mono text-xs"
+              />
+              <Button onClick={handleCopyUrl} size="icon" variant="secondary">
+                {copiedUrl ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Anyone with this link can view your assessment
+            </p>
+          </div>
+
+          {/* Save Key Section */}
           <div className="space-y-2">
             <label className="text-sm font-medium">Your Save Key</label>
             <div className="flex gap-2">
@@ -114,7 +148,7 @@ export function SaveLoadKey({ selectedRole, scores, onLoadKey }: SaveLoadKeyProp
                 className="font-mono text-xs"
               />
               <Button onClick={handleCopyKey} size="icon" variant="secondary">
-                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copiedKey ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
               </Button>
             </div>
           </div>

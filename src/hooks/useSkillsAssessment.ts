@@ -6,6 +6,38 @@ import {
   getSkillIndices,
 } from "@/lib/pm-skills-data";
 
+// Encode state to base64
+function encodeStateToBase64(role: string, scores: Record<number, string>): string {
+  const data: Record<string, string> = { role };
+  skillCategories.forEach((skillName, index) => {
+    if (skillName !== "" && scores[index] && scores[index] !== "") {
+      data[`s${index}`] = scores[index];
+    }
+  });
+  return btoa(JSON.stringify(data));
+}
+
+// Decode base64 to state
+function decodeBase64ToState(encoded: string): { role: string; scores: Record<number, string> } | null {
+  try {
+    const json = atob(encoded.trim());
+    const data = JSON.parse(json);
+    const role = data.role || "Product Manager";
+    const scores: Record<number, string> = {};
+    Object.keys(data).forEach((k) => {
+      if (k.startsWith("s")) {
+        const index = parseInt(k.substring(1), 10);
+        if (!isNaN(index)) {
+          scores[index] = data[k];
+        }
+      }
+    });
+    return { role, scores };
+  } catch {
+    return null;
+  }
+}
+
 export function useSkillsAssessment() {
   const roleExpectations = getRoleExpectations();
   const [selectedRole, setSelectedRole] = useState("Product Manager");
@@ -14,32 +46,23 @@ export function useSkillsAssessment() {
   // Load from URL params on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const roleFromUrl = params.get("role");
+    const stateParam = params.get("state");
     let loadedFromUrl = false;
 
-    if (roleFromUrl && roleExpectations[roleFromUrl]) {
-      setSelectedRole(roleFromUrl);
-      loadedFromUrl = true;
+    if (stateParam) {
+      const decoded = decodeBase64ToState(stateParam);
+      if (decoded) {
+        if (decoded.role && roleExpectations[decoded.role]) {
+          setSelectedRole(decoded.role);
+        }
+        if (Object.keys(decoded.scores).length > 0) {
+          setScores(decoded.scores);
+        }
+        loadedFromUrl = true;
+      }
     }
 
-    const newScores: Record<number, string> = {};
-    skillCategories.forEach((skillName, index) => {
-      if (skillName !== "") {
-        const scoreKey = `s${index}`;
-        if (params.has(scoreKey)) {
-          newScores[index] = params.get(scoreKey) || "";
-          loadedFromUrl = true;
-        }
-      }
-    });
-
-    if (loadedFromUrl) {
-      if (Object.keys(newScores).length > 0) {
-        setScores(newScores);
-      }
-      // Clear URL params after loading
-      window.history.replaceState(null, "", window.location.pathname);
-    } else {
+    if (!loadedFromUrl) {
       // Try loading from localStorage
       try {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -52,6 +75,13 @@ export function useSkillsAssessment() {
       }
     }
   }, []);
+
+  // Sync state to URL whenever role or scores change
+  useEffect(() => {
+    const encoded = encodeStateToBase64(selectedRole, scores);
+    const newUrl = `${window.location.pathname}?state=${encoded}`;
+    window.history.replaceState(null, "", newUrl);
+  }, [selectedRole, scores]);
 
   // Save to localStorage when scores change
   useEffect(() => {
