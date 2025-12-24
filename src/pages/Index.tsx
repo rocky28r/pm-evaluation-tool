@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Github } from "lucide-react";
 import { skillCategories } from "@/lib/pm-skills-data";
 import { useSkillsAssessment } from "@/hooks/useSkillsAssessment";
 import { RoleSelectorCard } from "@/components/RoleSelectorCard";
@@ -67,6 +68,15 @@ const Index = () => {
               </p>
             </div>
             <div className="flex items-center gap-2">
+              <a
+                href="https://github.com/rocky28r/pm-evaluation-tool"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                aria-label="View on GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
               <SaveLoadKey
                 selectedRole={selectedRole}
                 scores={scores}
