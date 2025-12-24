@@ -8,6 +8,7 @@ import { GapAnalysis } from "@/components/GapAnalysis";
 import { ExportButton } from "@/components/ExportButton";
 import { SaveLoadKey } from "@/components/SaveLoadKey";
 import { AssessmentProgress } from "@/components/AssessmentProgress";
+import { LegalFooter } from "@/components/LegalFooter";
 
 const Index = () => {
   const {
@@ -52,7 +53,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="bg-card border-b sticky top-0 z-40">
         <div className="container py-4 md:py-5">
@@ -134,6 +135,8 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      <LegalFooter />
     </div>
   );
 };
