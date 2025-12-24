@@ -82,7 +82,12 @@ const Index = () => {
                 scores={scores}
                 onLoadKey={loadState}
               />
-              <ExportButton targetRef={exportRef} selectedRole={selectedRole} />
+              <ExportButton 
+                targetRef={exportRef} 
+                selectedRole={selectedRole}
+                ownScores={getOwnScoresForChart()}
+                roleScores={getRoleScoresForChart()}
+              />
             </div>
           </div>
         </div>
