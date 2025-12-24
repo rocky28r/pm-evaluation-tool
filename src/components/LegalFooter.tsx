@@ -9,7 +9,7 @@ export const LegalFooter = () => {
       <footer className="mt-auto border-t bg-muted/30">
         <div className="container py-6 md:py-8">
           <div className="space-y-3 text-xs text-muted-foreground">
-            <p>© 2024 Dean Ranzenberger. All rights reserved.</p>
+            <p>© 2026 Dean Ranzenberger. All rights reserved.</p>
 
             <p>
               <span className="font-medium text-foreground/80">Imprint:</span>{" "}
