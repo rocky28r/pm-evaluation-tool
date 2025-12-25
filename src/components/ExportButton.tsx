@@ -282,14 +282,30 @@ export function ExportButton({ targetRef, selectedRole, ownScores, roleScores }:
       // Capture and add chart
       const chartCanvas = targetRef.current?.querySelector('canvas');
       if (chartCanvas) {
-        const chartImage = (chartCanvas as HTMLCanvasElement).toDataURL('image/png', 1.0);
-        
+        // Create a temporary canvas with white background for JPEG conversion
+        const originalCanvas = chartCanvas as HTMLCanvasElement;
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = originalCanvas.width;
+        tempCanvas.height = originalCanvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        if (tempCtx) {
+          // Fill with white background
+          tempCtx.fillStyle = '#ffffff';
+          tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+          // Draw the original chart on top
+          tempCtx.drawImage(originalCanvas, 0, 0);
+        }
+
+        const chartImage = tempCanvas.toDataURL('image/jpeg', 0.8);
+
         // Center the chart on the page
         const chartSize = Math.min(pageHeight - 60, pageWidth - 40);
         const chartX = (pageWidth - chartSize) / 2;
         const chartY = 38;
-        
-        pdf.addImage(chartImage, 'PNG', chartX, chartY, chartSize, chartSize);
+
+        pdf.addImage(chartImage, 'JPEG', chartX, chartY, chartSize, chartSize);
       }
       
       // Legend
