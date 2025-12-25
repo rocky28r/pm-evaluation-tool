@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Linkedin } from "lucide-react";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
 
 export const LegalFooter = () => {
@@ -9,7 +10,18 @@ export const LegalFooter = () => {
       <footer className="mt-auto border-t bg-muted/30">
         <div className="container py-6 md:py-8">
           <div className="space-y-3 text-xs text-muted-foreground">
-            <p>© 2026 Dean Ranzenberger. All rights reserved.</p>
+            <div className="flex items-center gap-3">
+              <p>© 2026 Dean Ranzenberger. All rights reserved.</p>
+              <a
+                href="https://www.linkedin.com/in/dean-ranzenberger-960682194/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center hover:text-foreground transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
 
             <p>
               <span className="font-medium text-foreground/80">Imprint:</span>{" "}
@@ -28,6 +40,20 @@ export const LegalFooter = () => {
               This tool is for self-evaluation purposes only. The results are
               generated locally in your browser. The provider assumes no
               liability for the accuracy or applicability of the results.
+            </p>
+
+            <p>
+              This tool is based on the{" "}
+              <a
+                href="https://www.ravi-mehta.com/product-manager-skills/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground transition-colors"
+              >
+                Product Manager Skills
+              </a>{" "}
+              framework by Ravi Mehta. This website is an independent project and
+              is not affiliated with, endorsed by, or associated with Ravi Mehta.
             </p>
 
             <p>
