@@ -70,12 +70,12 @@ export function GapAnalysis({ ownScores, roleScores, selectedRole }: GapAnalysis
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-card rounded-xl border shadow-sm">
-      <h2 className="text-lg font-semibold text-foreground mb-6">
+    <div className="w-full max-w-3xl mx-auto p-3 md:p-6 bg-card rounded-xl border shadow-sm">
+      <h2 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-6">
         Gap Analysis vs {selectedRole}
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 md:gap-6 md:grid-cols-2">
         {/* Strengths */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 text-green-600">
@@ -149,19 +149,19 @@ function GapCard({ item, type }: { item: GapItem; type: 'strength' | 'developmen
     : Math.min((item.own / item.target) * 100, 100);
   
   return (
-    <div className={`p-3 rounded-lg border ${categoryStyles[item.category]}`}>
-      <div className="flex justify-between items-start mb-2">
-        <span className="text-sm font-medium text-foreground">{item.skill}</span>
-        <span className={`text-xs font-semibold ${type === 'strength' ? 'text-green-600' : 'text-amber-600'}`}>
+    <div className={`p-2.5 md:p-3 rounded-lg border ${categoryStyles[item.category]}`}>
+      <div className="flex justify-between items-start mb-1.5 md:mb-2 gap-2">
+        <span className="text-xs md:text-sm font-medium text-foreground leading-tight">{item.skill}</span>
+        <span className={`text-xs font-semibold flex-shrink-0 ${type === 'strength' ? 'text-green-600' : 'text-amber-600'}`}>
           {type === 'strength' ? '+' : ''}{item.gap.toFixed(1)}
         </span>
       </div>
-      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+      <div className="flex items-center gap-2 text-[11px] md:text-xs text-muted-foreground">
         <span>You: {item.own.toFixed(1)}</span>
         <span>•</span>
         <span>Target: {item.target.toFixed(1)}</span>
       </div>
-      <div className="mt-2 h-1.5 bg-muted rounded-full overflow-hidden">
+      <div className="mt-1.5 md:mt-2 h-1 md:h-1.5 bg-muted rounded-full overflow-hidden">
         <div 
           className={`h-full rounded-full transition-all ${type === 'strength' ? 'bg-green-500' : 'bg-amber-500'}`}
           style={{ width: `${barWidth}%` }}

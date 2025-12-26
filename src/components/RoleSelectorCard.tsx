@@ -30,28 +30,28 @@ export function RoleSelectorCard({ value, onChange }: RoleSelectorCardProps) {
   const roles = Object.keys(getRoleExpectations());
 
   return (
-    <div className="rounded-lg border border-border bg-card p-5">
-      <div className="flex items-start gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-primary/10">
-          <Target className="w-5 h-5 text-primary" />
+    <div className="rounded-lg border border-border bg-card p-4 md:p-5">
+      <div className="flex items-start gap-3 mb-3 md:mb-4">
+        <div className="p-1.5 md:p-2 rounded-lg bg-primary/10 flex-shrink-0">
+          <Target className="w-4 h-4 md:w-5 md:h-5 text-primary" />
         </div>
-        <div>
-          <h3 className="font-heading font-semibold text-foreground">
+        <div className="min-w-0">
+          <h3 className="font-heading font-semibold text-foreground text-sm md:text-base">
             Role Benchmark
           </h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground">
             Compare your skills against role expectations
           </p>
         </div>
       </div>
 
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full bg-background">
+        <SelectTrigger className="w-full bg-background h-10 md:h-11 text-sm">
           <SelectValue placeholder="Select a role" />
         </SelectTrigger>
         <SelectContent>
           {roles.map((role) => (
-            <SelectItem key={role} value={role}>
+            <SelectItem key={role} value={role} className="text-sm">
               {role}
             </SelectItem>
           ))}
@@ -59,7 +59,7 @@ export function RoleSelectorCard({ value, onChange }: RoleSelectorCardProps) {
       </Select>
 
       {value && roleDescriptions[value] && (
-        <p className="mt-3 text-sm text-muted-foreground">
+        <p className="mt-2 md:mt-3 text-xs md:text-sm text-muted-foreground">
           {roleDescriptions[value]}
         </p>
       )}

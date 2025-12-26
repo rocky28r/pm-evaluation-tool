@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, FileText } from "lucide-react";
+import { Loader2, FileDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { jsPDF } from "jspdf";
 import { toast } from "@/hooks/use-toast";
@@ -356,18 +356,18 @@ export function ExportButton({ targetRef, selectedRole, ownScores, roleScores }:
 
   return (
     <Button 
-      variant="outline" 
+      variant="outline"
       size="sm"
       disabled={isExporting}
-      className="gap-2"
+      className="gap-2 px-2 sm:px-3"
       onClick={handleExportPDF}
     >
       {isExporting ? (
         <Loader2 className="w-4 h-4 animate-spin" />
       ) : (
-        <FileText className="w-4 h-4" />
+        <FileDown className="w-4 h-4" />
       )}
-      Export PDF
+      <span className="hidden sm:inline">Export PDF</span>
     </Button>
   );
 }

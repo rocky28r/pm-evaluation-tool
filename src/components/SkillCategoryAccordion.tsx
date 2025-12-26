@@ -35,21 +35,21 @@ export function SkillCategoryAccordion({
     <div className="rounded-lg border border-border overflow-hidden bg-card">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+        className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-muted/50 transition-colors touch-manipulation"
       >
-        <div className="flex items-center gap-3">
-          <div className={cn("w-1 h-8 rounded-full", colorClass)} />
-          <span className="font-heading font-semibold text-foreground">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className={cn("w-1 h-6 md:h-8 rounded-full", colorClass)} />
+          <span className="font-heading font-semibold text-foreground text-sm md:text-base">
             {title}
           </span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">
+        <div className="flex items-center gap-2 md:gap-3">
+          <span className="text-xs md:text-sm text-muted-foreground">
             {filledCount}/{totalCount} rated
           </span>
           <ChevronDown
             className={cn(
-              "w-5 h-5 text-muted-foreground transition-transform duration-200",
+              "w-4 h-4 md:w-5 md:h-5 text-muted-foreground transition-transform duration-200",
               isOpen && "rotate-180"
             )}
           />
@@ -63,7 +63,7 @@ export function SkillCategoryAccordion({
         )}
       >
         <div className="overflow-hidden">
-          <div className="p-4 pt-0 space-y-2">
+          <div className="p-3 md:p-4 pt-0 space-y-1.5 md:space-y-2">
             {skillIndices.map((index, i) => (
               <SkillInput
                 key={index}
