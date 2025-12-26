@@ -103,9 +103,9 @@ export function SaveLoadKey({ selectedRole, scores, onLoadKey }: SaveLoadKeyProp
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
+        <Button variant="outline" size="sm" className="gap-2 px-2 sm:px-3">
           <Key className="w-4 h-4" />
-          Save/Load/Share State
+          <span className="hidden sm:inline">Save/Load/Share State</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">

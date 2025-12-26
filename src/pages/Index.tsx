@@ -57,17 +57,17 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="bg-card border-b sticky top-0 z-40">
-        <div className="container py-4 md:py-5">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="text-xl md:text-2xl font-heading font-bold text-foreground">
+        <div className="container py-3 md:py-5">
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-lg md:text-2xl font-heading font-bold text-foreground truncate">
                 PM Skills Assessment
               </h1>
-              <p className="text-sm text-muted-foreground mt-0.5">
+              <p className="text-xs md:text-sm text-muted-foreground mt-0.5 hidden sm:block">
                 Rate your skills and compare against role benchmarks
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
               <a
                 href="https://github.com/rocky28r/pm-evaluation-tool"
                 target="_blank"
@@ -93,10 +93,10 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="container py-6 md:py-8">
-        <div className="grid lg:grid-cols-[1fr,1.4fr] gap-6 lg:gap-8">
+      <main className="container py-4 md:py-8">
+        <div className="grid lg:grid-cols-[1fr,1.4fr] gap-5 lg:gap-8">
           {/* Left Column - Inputs */}
-          <div className="space-y-5 order-2 lg:order-1">
+          <div className="space-y-4 md:space-y-5 order-2 lg:order-1">
             {/* Role Selector Card */}
             <RoleSelectorCard value={selectedRole} onChange={setSelectedRole} />
 
@@ -111,7 +111,7 @@ const Index = () => {
             </div>
 
             {/* Skill Categories */}
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               {categoryGroups.map((group) => (
                 <SkillCategoryAccordion
                   key={group.title}
@@ -129,10 +129,10 @@ const Index = () => {
           </div>
 
           {/* Right Column - Visualizations */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start space-y-6">
-            <div ref={exportRef} className="bg-background space-y-6">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start space-y-4 md:space-y-6">
+            <div ref={exportRef} className="bg-background space-y-4 md:space-y-6">
               {/* Chart Section */}
-              <div className="rounded-lg border border-border bg-card p-4 md:p-6">
+              <div className="rounded-lg border border-border bg-card p-3 md:p-6">
                 <SkillsChart
                   ownScores={getOwnScoresForChart()}
                   roleScores={getRoleScoresForChart()}

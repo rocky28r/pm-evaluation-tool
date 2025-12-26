@@ -8,9 +8,9 @@ export const LegalFooter = () => {
   return (
     <>
       <footer className="mt-auto border-t bg-muted/30">
-        <div className="container py-6 md:py-8">
-          <div className="space-y-3 text-xs text-muted-foreground">
-            <div className="flex items-center gap-3">
+        <div className="container py-4 md:py-8">
+          <div className="space-y-2 md:space-y-3 text-[11px] md:text-xs text-muted-foreground">
+            <div className="flex items-center gap-2 md:gap-3 flex-wrap">
               <p>© 2026 Dean Ranzenberger. All rights reserved.</p>
               <a
                 href="https://www.linkedin.com/in/dean-ranzenberger-960682194/"
