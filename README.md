@@ -78,6 +78,11 @@ The application is fully client-side with no backend dependencies. Key architect
 
 For detailed architecture documentation, see [CLAUDE.md](./CLAUDE.md).
 
+## Link Sharing
+
+Shared links include the assessment title and description, without a social-preview image.
+The application intentionally does not include a favicon.
+
 ## License
 
 This project is released under the MIT License. You are free to use, modify, and distribute this software for any purpose, commercial or non-commercial.
