@@ -6,9 +6,11 @@ import {
   getSkillIndices,
 } from "@/lib/pm-skills-data";
 
+const ASSESSMENT_FRAMEWORK_VERSION = 2;
+
 // Encode state to base64
 function encodeStateToBase64(role: string, scores: Record<number, string>): string {
-  const data: Record<string, string> = { role };
+  const data: Record<string, string | number> = { role, version: ASSESSMENT_FRAMEWORK_VERSION };
   skillCategories.forEach((skillName, index) => {
     if (skillName !== "" && scores[index] && scores[index] !== "") {
       data[`s${index}`] = scores[index];
@@ -21,14 +23,21 @@ function encodeStateToBase64(role: string, scores: Record<number, string>): stri
 function decodeBase64ToState(encoded: string): { role: string; scores: Record<number, string> } | null {
   try {
     const json = atob(encoded.trim());
-    const data = JSON.parse(json);
+    const data: Record<string, unknown> = JSON.parse(json);
+    if (data.version !== ASSESSMENT_FRAMEWORK_VERSION) {
+      return null;
+    }
     const role = data.role || "Product Manager";
+    if (typeof role !== "string") {
+      return null;
+    }
     const scores: Record<number, string> = {};
     Object.keys(data).forEach((k) => {
       if (k.startsWith("s")) {
         const index = parseInt(k.substring(1), 10);
-        if (!isNaN(index)) {
-          scores[index] = data[k];
+        const score = data[k];
+        if (!isNaN(index) && typeof score === "string") {
+          scores[index] = score;
         }
       }
     });

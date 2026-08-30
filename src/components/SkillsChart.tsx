@@ -99,10 +99,10 @@ export function SkillsChart({
             callback: function (label: string, index: number) {
               return skillCategories[index] !== "" ? label : null;
             },
-            font: {
-              size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 11,
-              weight: 500,
-            },
+              font: {
+                size: 11,
+                weight: 500,
+              },
             color: (ctx: { index: number }) => pointLabelColors[ctx.index] || "#666",
           },
         },
@@ -142,7 +142,7 @@ export function SkillsChart({
   );
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-2 sm:p-4 md:p-6 bg-card rounded-xl border shadow-sm animate-scale-in">
+    <div className="w-full max-w-3xl mx-auto bg-card animate-scale-in">
       {/* Mobile legend */}
       <div className="flex justify-center gap-4 mb-2 sm:hidden text-xs">
         <div className="flex items-center gap-1.5">
@@ -154,7 +154,12 @@ export function SkillsChart({
           <span className="text-muted-foreground">{selectedRole}</span>
         </div>
       </div>
-      <Radar data={data} options={options} />
+      <div className="hidden min-[480px]:block">
+        <Radar data={data} options={options} />
+      </div>
+      <p className="min-[480px]:hidden px-4 pb-5 text-center text-xs leading-relaxed text-muted-foreground">
+        The radar chart is available on larger screens. Use the benchmark values beside each skill to compare your assessment here.
+      </p>
     </div>
   );
 }

@@ -1,40 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
-
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 20%;
+    --background: 210 32% 97%;
+    --foreground: 219 31% 18%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 20%;
+    --card: 0 0% 99%;
+    --card-foreground: 219 31% 18%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 20%;
 
-    --primary: 207 90% 54%;
+    --primary: 215 74% 42%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 25% 25%;
+    --secondary: 211 27% 93%;
+    --secondary-foreground: 219 31% 24%;
 
-    --muted: 210 15% 92%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 211 25% 93%;
+    --muted-foreground: 216 18% 43%;
 
-    --accent: 174 72% 44%;
+    --accent: 166 62% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 88%;
-    --input: 214 20% 88%;
-    --ring: 207 90% 54%;
+    --border: 215 22% 84%;
+    --input: 215 22% 84%;
+    --ring: 215 74% 42%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* PM Skills specific colors */
     --pm-orange: 24 92% 54%;
@@ -106,6 +106,8 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image: linear-gradient(hsl(215 25% 88% / 0.33) 1px, transparent 1px), linear-gradient(90deg, hsl(215 25% 88% / 0.33) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
   h1, h2, h3, h4, h5, h6 {

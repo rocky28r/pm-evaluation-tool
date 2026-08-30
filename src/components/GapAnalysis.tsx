@@ -60,8 +60,8 @@ export function GapAnalysis({ ownScores, roleScores, selectedRole }: GapAnalysis
 
   if (!hasScores) {
     return (
-      <div className="w-full max-w-3xl mx-auto p-6 bg-card rounded-xl border shadow-sm">
-        <h2 className="text-lg font-semibold text-foreground mb-4">Gap Analysis</h2>
+      <div className="w-full max-w-3xl mx-auto p-5 md:p-6 bg-card rounded-md border shadow-[0_10px_28px_hsl(216_35%_20%/0.045)]">
+        <h2 className="font-heading text-lg font-semibold text-foreground mb-4">Gap Analysis</h2>
         <p className="text-muted-foreground text-center py-8">
           Enter your skill scores above to see your gap analysis compared to {selectedRole}.
         </p>
@@ -70,8 +70,8 @@ export function GapAnalysis({ ownScores, roleScores, selectedRole }: GapAnalysis
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-3 md:p-6 bg-card rounded-xl border shadow-sm">
-      <h2 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-6">
+    <div className="w-full max-w-3xl mx-auto p-4 md:p-6 bg-card rounded-md border shadow-[0_10px_28px_hsl(216_35%_20%/0.045)]">
+      <h2 className="font-heading text-base md:text-lg font-semibold text-foreground mb-4 md:mb-6">
         Gap Analysis vs {selectedRole}
       </h2>
 

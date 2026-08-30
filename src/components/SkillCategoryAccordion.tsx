@@ -32,19 +32,19 @@ export function SkillCategoryAccordion({
   const totalCount = skillIndices.length;
 
   return (
-    <div className="rounded-lg border border-border overflow-hidden bg-card">
+    <section className="rounded-md border border-border overflow-hidden bg-card shadow-[0_8px_20px_hsl(216_35%_20%/0.035)]">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-muted/50 transition-colors touch-manipulation"
       >
         <div className="flex items-center gap-2 md:gap-3">
-          <div className={cn("w-1 h-6 md:h-8 rounded-full", colorClass)} />
+          <div className={cn("w-1 h-6 md:h-8", colorClass)} />
           <span className="font-heading font-semibold text-foreground text-sm md:text-base">
             {title}
           </span>
         </div>
         <div className="flex items-center gap-2 md:gap-3">
-          <span className="text-xs md:text-sm text-muted-foreground">
+          <span className="text-xs font-medium text-muted-foreground">
             {filledCount}/{totalCount} rated
           </span>
           <ChevronDown
@@ -63,7 +63,7 @@ export function SkillCategoryAccordion({
         )}
       >
         <div className="overflow-hidden">
-          <div className="p-3 md:p-4 pt-0 space-y-1.5 md:space-y-2">
+          <div className="p-2 md:p-3 pt-0 space-y-1.5">
             {skillIndices.map((index, i) => (
               <SkillInput
                 key={index}
@@ -78,6 +78,6 @@ export function SkillCategoryAccordion({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

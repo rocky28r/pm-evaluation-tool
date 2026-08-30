@@ -4,12 +4,16 @@ A self-assessment tool for Product Managers to evaluate their skills across four
 
 ## Overview
 
-This application helps product managers assess their capabilities across 12 core skills organized into four competency areas:
+This application helps product managers assess their capabilities against the current career framework across 12 core skills organized into four competency areas:
 
-- **Customer Insight** - Understanding user needs and market dynamics
-- **Product Strategy** - Setting vision and making strategic decisions
-- **Influencing People** - Leadership, communication, and stakeholder management
-- **Product Execution** - Delivery, prioritization, and operational excellence
+- **Customer Insight** - Evidence-led discovery, customer partnership and GTM, and solution design
+- **Product Strategy** - Outcome ownership, vision and portfolio management, plus technical and AI direction
+- **Influencing People** - Stakeholder influence, people leadership, and product operating models
+- **Product Execution** - Problem framing, reliable delivery, quality, measurement, and iteration
+
+Role benchmarks reflect the current progression: Junior Product Manager, Product Manager, Senior Product Manager, Principal Product Manager, Group Product Manager, and Director Product. The four-category layout and 0-3 scale are retained to make the assessment familiar while aligning the underlying skills to the new framework.
+
+Previous assessment links and locally stored scores are intentionally not loaded because their score positions refer to the previous competency definitions.
 
 The tool provides:
 - Interactive skill self-assessment (0-3 scale)
@@ -119,6 +123,6 @@ Contributions are welcome! Feel free to:
 
 ## Acknowledgments
 
-This tool is based on the Product Manager Skills framework (https://www.ravi-mehta.com/product-manager-skills/) by Ravi Mehta. This website is an independent project and is not affiliated with, endorsed by, or associated with Ravi Mehta.
+The assessment structure retains the familiar four-area PM skills model, with the competency names and role benchmarks adapted to the current internal career framework.
 
 Built with modern web technologies and inspired by product management competency frameworks.

@@ -1,27 +1,27 @@
 export const skillCategories = [
   "", // 0 - Spacer 1
-  "Fluency with Data", "Voice of the Customer", "User Experience Design", // 1, 2, 3
+  "Evidence-Led Discovery", "Customer Partnership & GTM", "Solution & Experience Design", // 1, 2, 3
   "", // 4 - Spacer 2
-  "Business Outcome Ownership", "Product Vision & Roadmapping", "Strategic Impact", // 5, 6, 7
+  "Outcome & Strategy Ownership", "Vision, Roadmap & Portfolio", "Technical & AI Direction", // 5, 6, 7
   "", // 8 - Spacer 3
-  "Stakeholder Management", "Team Leadership", "Managing Up", // 9, 10, 11
+  "Stakeholder Influence", "Coaching & People Leadership", "Product Operating Model", // 9, 10, 11
   "", // 12 - Spacer 4
-  "Feature Specification", "Product Delivery", "Quality Assurance" // 13, 14, 15
+  "Problem Framing & Requirements", "Delivery & Quality", "Measurement & Iteration" // 13, 14, 15
 ];
 
 export const skillDescriptions: Record<string, string> = {
-  "Feature Specification": "PRODUCT EXECUTION: Feature Specification\nThe ability for a PM to gather requirements, define functionality, and set goals in a clear, actionable format that can be used to communicate with the team and drive product delivery.",
-  "Product Delivery": "PRODUCT EXECUTION: Product Delivery\nThe ability to work closely with one's immediate team (engineering, design, etc.) to iteratively and quickly deliver product functionality that accomplishes pre-defined goals.",
-  "Quality Assurance": "PRODUCT EXECUTION: Product Quality Assurance\nThe ability to identify, prioritize, and resolve technical, functional, and business quality issues across all devices, points of sale, and use cases that are applicable to the product.",
-  "Fluency with Data": "CUSTOMER INSIGHT: Fluency with Data\nThe ability to use data to generate actionable insights, to leverage those insights to achieve goals set for the product, and to connect those quantified goals to meaningful outcomes for the business.",
-  "Voice of the Customer": "CUSTOMER INSIGHT: Voice of the Customer\nThe ability to leverage user feedback in all its forms (from casual conversations to formal studies) to understand how users engage with the product, make better decisions, and drive meaningful outcomes for the business.",
-  "User Experience Design": "CUSTOMER INSIGHT: User Experience Design\nThe ability, both as an individual and working with the design team, to define requirements and deliver UX designs that are easy to use, leverage UX best practices, and dovetail with the predominant UX patterns present in the product.",
-  "Business Outcome Ownership": "PRODUCT STRATEGY: Business Outcome Ownership\nThe ability to drive meaningful outcomes for the business by connecting product functionality and goals to the strategic objectives of the PM's team and the company overall.",
-  "Product Vision & Roadmapping": "PRODUCT STRATEGY: Product Vision & Roadmapping\nThe ability to define an overall vision for the PM's area of the product that connects to the strategy for the team and the company. The ability to define a clear roadmap of highly prioritized features and initiatives that deliver against that vision.",
-  "Strategic Impact": "PRODUCT STRATEGY: Strategic Impact\nThe ability to understand and contribute to the business strategy for a PM's team and the company overall. The ability to bring strategy to fruition through the consistent delivery of business outcomes.",
-  "Stakeholder Management": "INFLUENCING PEOPLE: Stakeholder Management\nThe ability to proactively identify stakeholders impacted by the PM's area of ownership and to work with those stakeholders to factor their requirements into product decisions.",
-  "Team Leadership": "INFLUENCING PEOPLE: Team Leadership\nThe ability to manage and mentor direct reports with the goal of enabling them to successfully deliver on their product areas, continuously improve against these competencies, deliver meaningful business outcomes, and achieve their career objectives.",
-  "Managing Up": "INFLUENCING PEOPLE: Managing Up\nThe ability to leverage senior managers and executives in the organization to help achieve goals, deliver meaningful business outcomes and positively influence the strategic direction of the PM's team and the company overall."
+  "Evidence-Led Discovery": "Frame product problems through qualitative and quantitative evidence, conduct research, synthesize learning, and validate conclusions, including when using AI-supported tools.",
+  "Customer Partnership & GTM": "Build customer access and feedback loops, bring customer insight into decisions, and partner with Sales, Customer Success, Marketing, and GTM teams from discovery through launch.",
+  "Solution & Experience Design": "Lead concept development with Design and Engineering, test solution options, and ensure the resulting experience solves the customer problem clearly and effectively.",
+  "Outcome & Strategy Ownership": "Connect product work to organizational objectives, set meaningful success measures, make trade-offs, and own the outcomes created within the relevant scope.",
+  "Vision, Roadmap & Portfolio": "Shape product direction, prioritize and coordinate roadmaps, and, at leadership levels, make coherent portfolio choices across teams and product lines.",
+  "Technical & AI Direction": "Co-shape technical decisions with Engineering and apply AI with sound judgment to improve product discovery, decision quality, delivery, and ways of working.",
+  "Stakeholder Influence": "Align internal and external stakeholders, communicate product decisions with clarity, and influence across team, group, and organizational boundaries.",
+  "Coaching & People Leadership": "Develop product talent through mentoring and coaching and, where accountable, hiring, performance support, and leadership-bench development.",
+  "Product Operating Model": "Improve product craft, working rhythms, standards, and operating models so teams can make better decisions and execute consistently at scale.",
+  "Problem Framing & Requirements": "Turn validated problems into clear goals, requirements, success criteria, and prioritized backlog decisions that enable effective product work.",
+  "Delivery & Quality": "Lead delivery with Design and Engineering, manage dependencies and risks, maintain product and process quality, and bring valuable work to market reliably.",
+  "Measurement & Iteration": "Define and track KPIs, evaluate results, learn from releases and feedback, and adapt product decisions to improve outcomes."
 };
 
 export const categoryColors: Record<number, string> = {
@@ -39,19 +39,15 @@ export const pointLabelColors = [
 ];
 
 export const coreRoleExpectations: Record<string, number[]> = {
-  "Jr Product Manager":           [1.5, 2.0, 1.5, 3.0, 0.5, 0.5, 1.0, 0.0, 0.5, 3.0, 1.0, 3.0],
-  "Product Manager":              [2.5, 3.0, 2.0, 3.0, 1.0, 1.0, 1.5, 0.0, 1.0, 3.0, 3.0, 3.0],
-  "Senior Product Manager":       [3.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 0.5, 1.5, 3.0, 3.0, 3.0],
-  "Principal Product Manager":    [3.0, 3.0, 3.0, 3.0, 2.5, 1.5, 2.0, 0.5, 1.0, 2.5, 2.5, 2.0],
-  "Senior Principal Product Manager": [3.0, 3.0, 3.0, 3.0, 2.5, 2.5, 2.0, 0.5, 1.0, 1.5, 2.0, 0.5],
-  "Associate Group Product Manager": [3.0, 3.0, 3.0, 3.0, 2.0, 1.0, 3.0, 1.0, 1.5, 3.0, 3.0, 3.0],
-  "Group Product Manager":        [3.0, 3.0, 3.0, 3.0, 2.0, 1.5, 3.0, 2.0, 2.0, 2.5, 2.5, 2.0],
-  "Product Director":             [3.0, 2.5, 2.0, 3.0, 2.5, 2.5, 3.0, 2.5, 2.5, 1.5, 2.0, 0.5],
-  "VP Product":                   [3.0, 2.0, 1.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 0.5, 1.0, 0.5],
-  "SVP Product":                  [3.0, 2.0, 0.5, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 0.5, 0.5, 0.5]
+  "Junior Product Manager":       [1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0],
+  "Product Manager":              [2.0, 2.0, 2.0, 1.5, 1.5, 1.5, 1.5, 1.0, 1.0, 2.0, 2.0, 2.0],
+  "Senior Product Manager":       [3.0, 3.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.0, 2.0, 3.0, 3.0, 3.0],
+  "Principal Product Manager":    [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.5, 3.0, 3.0, 3.0, 3.0],
+  "Group Product Manager":        [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 2.5, 3.0, 3.0],
+  "Director Product":             [2.5, 2.5, 2.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 1.5, 2.5, 3.0]
 };
 
-export const LOCAL_STORAGE_KEY = 'pmSkillsAssessmentScores';
+export const LOCAL_STORAGE_KEY = 'pmSkillsAssessmentScoresV2';
 
 export function transformScores(scores12: number[]): (number | null)[] {
   if (!scores12 || scores12.length !== 12) {

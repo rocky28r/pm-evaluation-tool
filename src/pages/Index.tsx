@@ -56,11 +56,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="bg-card border-b sticky top-0 z-40">
-        <div className="container py-3 md:py-5">
+      <header className="bg-card/95 backdrop-blur-sm border-b sticky top-0 z-40">
+        <div className="container py-3 md:py-4">
           <div className="flex items-center justify-between gap-2">
             <div className="min-w-0 flex-1">
-              <h1 className="text-lg md:text-2xl font-heading font-bold text-foreground truncate">
+              <h1 className="text-lg md:text-2xl font-heading font-bold text-foreground tracking-normal truncate">
                 PM Skills Assessment
               </h1>
               <p className="text-xs md:text-sm text-muted-foreground mt-0.5 hidden sm:block">
@@ -93,17 +93,21 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="container py-4 md:py-8">
-        <div className="grid lg:grid-cols-[1fr,1.4fr] gap-5 lg:gap-8">
+      <main className="container py-5 md:py-8">
+        <div className="mb-5 md:mb-7 flex flex-col gap-2 border-l-2 border-primary pl-3 md:pl-4">
+          <p className="text-xs font-heading font-semibold uppercase tracking-[0.12em] text-primary">Career framework calibration</p>
+          <p className="max-w-2xl text-sm text-muted-foreground">Score the skills that define effective product leadership in your current scope.</p>
+        </div>
+        <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.3fr)] gap-5 lg:gap-8">
           {/* Left Column - Inputs */}
-          <div className="space-y-4 md:space-y-5 order-2 lg:order-1">
+          <div className="space-y-4 md:space-y-5 order-1">
             {/* Role Selector Card */}
             <RoleSelectorCard value={selectedRole} onChange={setSelectedRole} />
 
             {/* Progress */}
-            <div className="px-1">
+            <div className="px-1 pt-1">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-xs font-heading font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                   Assessment Progress
                 </span>
               </div>
@@ -129,10 +133,10 @@ const Index = () => {
           </div>
 
           {/* Right Column - Visualizations */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start space-y-4 md:space-y-6">
-            <div ref={exportRef} className="bg-background space-y-4 md:space-y-6">
+          <div className="order-2 lg:sticky lg:top-24 lg:self-start space-y-4 md:space-y-6">
+            <div ref={exportRef} className="space-y-4 md:space-y-6">
               {/* Chart Section */}
-              <div className="rounded-lg border border-border bg-card p-3 md:p-6">
+              <div className="rounded-md border border-border bg-card p-3 md:p-6 shadow-[0_10px_28px_hsl(216_35%_20%/0.045)]">
                 <SkillsChart
                   ownScores={getOwnScoresForChart()}
                   roleScores={getRoleScoresForChart()}

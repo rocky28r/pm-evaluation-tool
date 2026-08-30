@@ -17,7 +17,7 @@ export function AssessmentProgress({
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+      <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
         <div
           className={cn(
             "h-full rounded-full transition-all duration-500",
@@ -26,8 +26,8 @@ export function AssessmentProgress({
           style={{ width: `${percentage}%` }}
         />
       </div>
-      <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">
-        {filledCount}/{totalCount}
+      <span className="text-xs font-heading font-semibold text-primary whitespace-nowrap">
+        {filledCount} of {totalCount}
       </span>
     </div>
   );
